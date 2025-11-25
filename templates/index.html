@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>ID Card OCR Test</title>
+</head>
+<body>
+<h1>ID Card OCR Test</h1>
+
+<form id="ocr-form" method="post" enctype="multipart/form-data" action="/api/ocr/id-card">
+    <div>
+        <label>신분증 이미지:</label>
+        <input type="file" name="image" accept="image/*" required>
+    </div>
+    <div>
+        <label>카드 타입:</label>
+        <select name="card_type">
+            <option value="driver_license_v1">운전면허증 템플릿 v1</option>
+        </select>
+    </div>
+    <button type="submit">업로드 및 OCR 실행</button>
+</form>
+
+</body>
+</html>
