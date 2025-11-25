@@ -3,23 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>ID Card OCR Test</title>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-<h1>ID Card OCR Test</h1>
+<div class="page-container">
 
-<form id="ocr-form" method="post" enctype="multipart/form-data" action="/api/ocr/id-card">
-    <div>
-        <label>신분증 이미지:</label>
-        <input type="file" name="image" accept="image/*" required>
-    </div>
-    <div>
-        <label>카드 타입:</label>
-        <select name="card_type">
-            <option value="driver_license_v1">운전면허증 템플릿 v1</option>
-        </select>
-    </div>
-    <button type="submit">업로드 및 OCR 실행</button>
-</form>
+    <!-- 좌측: 업로드 + 이미지 미리보기 -->
+    <div class="panel panel-left">
+        <div>
+            <div class="panel-title">운전면허증 이미지 업로드</div>
+            <form id="ocr-form" class="upload-form" enctype="multipart/form-data">
+                <div class="form-row">
+                    <label>신분증 이미지</label>
+                    <input type="file" name="image" id="image-input" accept="image/*" required>
+                </div>
+                <div class="form-row">
+                    <label>카드 타입</label>
+                    <select name="card_type" id="card-type-select">
+                        <option value="driver_license_v1">운전면허증 템플릿 v1</option>
+                    </select>
+                </div>
+                <button type="submit" class="upload-btn">OCR 실행</button>
+                <div id="error-message" class="error-text" style="display:none;"></div>
+            </form>
+        </div>
 
+        <div class="preview-box">
+            <img id="image-preview" alt="업로드한 이미지 미리보기" style="display:none;">
+            <span id="preview-placeholder">이미지를 업로드하면 이 곳에 미리보기가 표시됩니다.</span>
+        </div>
+    </div>
+
+    <!-- 우측: JSON 결과 -->
+    <div class="panel">
+        <div class="panel-title">OCR 결과 (JSON)</div>
+        <pre id="json-output" class="json-box empty">
+            아직 결과가 없습니다. 이미지를 업로드하고 OCR 실행 버튼을 눌러주세요.
+        </pre>
+    </div>
+</div>
+
+<script src="/static/js/ocr.js"></script>
 </body>
 </html>
